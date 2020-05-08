@@ -1,0 +1,50 @@
+@{
+    ViewData["Title"] = "SquareRoot Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">SquareRoot Application</h1>
+</div>
+
+@{
+    if(ViewBag.ResultOne != null || ViewBag.ResultTwo != null)
+    {
+        if(ViewBag.ResultOne > ViewBag.ResultTwo)
+        {
+            <div>
+                <p>The number @ViewBag.NumberOne with square root @ViewBag.ResultOne has a higher 
+                    square root than the number @ViewBag.NumberTwo with square root @ViewBag.ResultTwo</p>
+            </div>
+        }
+        else if(ViewBag.ResultOne < ViewBag.ResultTwo)
+        {
+            <div>
+                <p>The number @ViewBag.NumberTwo with square root @ViewBag.ResultTwo has a higher 
+                    square root than the number @ViewBag.NumberOne with square root @ViewBag.ResultOne</p>
+            </div>
+        }
+        else if(ViewBag.NumberOne == ViewBag.NumberTwo)
+        {
+            <div>
+                <p>The two numbers you entered have the same squareroot of @ViewBag.ResultOne</p>
+                <p>PLEASE ENTER NEW VALUES</p>
+            </div>
+        }
+        
+        else if(ViewBag.NumberOne < 0 || ViewBag.NumberTwo < 0)
+        {
+            @ViewBag.ErrorMessage;
+               
+        }
+        
+    }
+    
+}
+
+<div>
+    <form asp-controller="Calc" asp-action="Squareroot" method="POST">
+        <input type="number" placeholder="First Number" name="firstnumber" required min="0"/>
+        <input type="number" placeholder="Second Number" name="secondnumber" required min="0"/>
+        <button type="submit" button.Enabled = true>submit</button>
+    </form>
+</div>
